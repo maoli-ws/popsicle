@@ -7,7 +7,7 @@ export default function Home() {
       <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Learn <a href="https://nextjs.org">Next.js!</a>
+            Paletas de Hielo Maoli
           </h1>
         </main>
       </div>
