@@ -1,10 +1,20 @@
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import Image from "next/image";
 
 export default function Menu() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">Paletas maoli</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <Image
+            alt=""
+            src="/logo-min.jpeg"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{" "}
+          Paletas maoli
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -16,9 +26,7 @@ export default function Menu() {
               <NavDropdown.Item href="#action/3.2">
                 Another action
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
-                Something
-              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Separated link

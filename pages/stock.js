@@ -28,6 +28,7 @@ export default function Stock() {
   })
   return (
     <Layout>
+      <h1>Existencias</h1>
       <ListGroup>
         {list}
       </ListGroup>

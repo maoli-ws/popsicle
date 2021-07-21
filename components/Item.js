@@ -15,6 +15,7 @@ export default function Item(props) {
         aria-label="Example text with button addon"
         aria-describedby="basic-addon1"
         value={props.value}
+        readOnly={props.stock ? true : false}
       />
     </InputGroup>
   );
