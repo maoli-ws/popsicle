@@ -119,3 +119,7 @@
     flex-direction: column;
   }
 }
+
+.badge {
+  background: #0070f3;
+}

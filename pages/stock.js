@@ -5,6 +5,7 @@ import Item from "../components/Item";
 import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import { useState, useEffect } from "react";
 import { Products } from "../src/models";
+import styles from "../styles/Home.module.css";
 
 export default function Stock() {
   const [items, setItems] = useState([]);
@@ -39,7 +40,7 @@ export default function Stock() {
     <Layout>
       <h1>
         Inventario{" "}
-        <Badge pill bg="secondary" style={{ background: "blue" }}>
+        <Badge pill bg="secondary" className={styles.badge} >
           {total}
         </Badge>
       </h1>
