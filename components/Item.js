@@ -49,7 +49,7 @@ export default function Item(props) {
             aria-describedby="basic-addon2"
             id={`newQuantity-${props.flavor}`}
           />
-          {props.order && (
+          {(props.order && props.value > 0) && (
             <Button
               variant="outline-secondary"
               id={`button-sale-${props.flavor}`}
