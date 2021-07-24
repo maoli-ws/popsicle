@@ -1,6 +1,7 @@
 import { ListGroup } from "react-bootstrap";
 import Layout from "../components/Layout";
 import Item from "../components/Item";
+import AddItem from "../components/AddItem";
 import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import { useState, useEffect } from "react";
 import { Products } from "../src/models";
@@ -32,6 +33,7 @@ export default function Purchase() {
     <Layout>
       <h1>Compras</h1>
       <ListGroup>{list}</ListGroup>
+      <ListGroup variant="flush"><AddItem></AddItem></ListGroup>
     </Layout>
   );
 }
