@@ -2,12 +2,13 @@ import { ListGroup } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
 import Layout from "../components/Layout";
 import Item from "../components/Item";
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import { useState, useEffect } from "react";
 import { Products } from "../src/models";
 import styles from "../styles/Home.module.css";
 
-export default function Stock() {
+function Stock() {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -48,3 +49,5 @@ export default function Stock() {
     </Layout>
   );
 }
+
+export default withAuthenticator(Stock);

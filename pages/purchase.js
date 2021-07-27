@@ -2,11 +2,12 @@ import { ListGroup } from "react-bootstrap";
 import Layout from "../components/Layout";
 import Item from "../components/Item";
 import AddItem from "../components/AddItem";
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import { useState, useEffect } from "react";
 import { Products } from "../src/models";
 
-export default function Purchase() {
+function Purchase() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     fetchItems();
@@ -37,3 +38,5 @@ export default function Purchase() {
     </Layout>
   );
 }
+
+export default withAuthenticator(Purchase);
