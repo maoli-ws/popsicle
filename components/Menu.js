@@ -1,7 +1,30 @@
+import { useEffect, useState } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import Image from "next/image";
+import { AmplifySignOut } from "@aws-amplify/ui-react";
+import { Auth } from "aws-amplify";
 
-export default function Menu() {
+function Menu() {
+  const [isLogged, setIsLogged] = useState(false);
+  const [username, setUsername] = useState('')
+
+  useEffect(() => {
+    async function userInfo() {
+      try {
+        const { attributes } = await Auth.currentAuthenticatedUser();
+        setIsLogged(attributes ? true : false);
+        console.log('logged: ', attributes);
+        if (isLogged) {
+          console.log('username: ', username);
+          setUsername(attributes.preferred_username);
+        }
+      } catch (error) {
+        console.log('The user is not authenticated');
+      }
+    }
+    userInfo();
+  }, [isLogged, username])
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -22,9 +45,12 @@ export default function Menu() {
             <Nav.Link href="stock">Inventario</Nav.Link>
             <Nav.Link href="order">Ventas</Nav.Link>
             <Nav.Link href="purchase">Compras</Nav.Link>
+            {isLogged && <AmplifySignOut buttonText={`Cerrar sesión de ${username}`} ></AmplifySignOut>}
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
+
+export default Menu;
