@@ -1,11 +1,12 @@
 import { ListGroup } from "react-bootstrap";
 import Layout from "../components/Layout";
 import Item from "../components/Item";
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import { useState, useEffect } from "react";
 import { Products } from "../src/models";
 
-export default function Order() {
+function Order() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     fetchItems();
@@ -35,3 +36,5 @@ export default function Order() {
     </Layout>
   );
 }
+
+export default withAuthenticator(Order);
