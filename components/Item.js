@@ -34,14 +34,14 @@ export default function Item(props) {
     <>
       <InputGroup className="mb-3">
         <InputGroup.Text className="mb-6">{props.flavor}</InputGroup.Text>
-        <FormControl
+        {!props.list && <FormControl
           aria-label="Example text with button addon"
           aria-describedby="basic-addon1"
           value={props.value}
           readOnly={true}
-        />
+        />}
       </InputGroup>
-      {!props.stock && (
+      {(!props.stock && !props.list) && (
         <InputGroup className="mb-3">
           <FormControl
             placeholder="Cantidad"
