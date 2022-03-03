@@ -1,4 +1,22 @@
 {
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-popsicle-prod-194313-authRole",
+      "UnauthRoleArn": "arn:aws:iam::100127809745:role/amplify-popsicle-prod-194313-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::100127809745:role/amplify-popsicle-prod-194313-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-popsicle-prod-194313-deployment",
+      "UnauthRoleName": "amplify-popsicle-prod-194313-unauthRole",
+      "StackName": "amplify-popsicle-prod-194313",
+      "StackId": "arn:aws:cloudformation:us-east-2:100127809745:stack/amplify-popsicle-prod-194313/29f0a050-9b2a-11ec-b3dd-0af3398f8648",
+      "AmplifyAppId": "d1wnj0ywib6pe"
+    },
+    "categories": {
+      "auth": {
+        "popsicle": {}
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify962e0d77b40d4-staging-221735-authRole",
