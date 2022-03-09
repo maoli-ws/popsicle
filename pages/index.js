@@ -27,7 +27,7 @@ export default function Home() {
   const list = items.map((item) => {
     return (
       item.quantity > 0 && <ListGroup.Item key={item.flavor}>
-        <Item list flavor={item.flavor}></Item>
+        <Item list flavor={item.flavor} quantity={item.quantity} ></Item>
       </ListGroup.Item>
     );
   });
