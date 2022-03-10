@@ -6,6 +6,7 @@ import Item from "../components/Item";
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
 import { Products } from "../src/models";
+import { GoogleAd } from "../components/GoogleAd";
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -56,6 +57,7 @@ export default function Home() {
           </Card.Footer>
         </Card>
       </div>
+      <GoogleAd />
     </Layout>
   );
 }

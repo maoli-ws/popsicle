@@ -10,6 +10,7 @@ export default function Layout(props) {
         <meta name="description" content="Paletas de hielo en Santa Fe, Xochitepec, Morelos" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`} crossOrigin="anonymous"/>
       </Head>
       <Menu home={props.home}/>
       <>{props.children}</>
