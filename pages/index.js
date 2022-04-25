@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
 import { Products } from "../src/models";
 import { GoogleAd } from "../components/GoogleAd";
+import Image from 'react-bootstrap/Image'
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -14,9 +15,7 @@ export default function Home() {
   useEffect(() => {
     fetchItems();
     async function fetchItems() {
-      const itemData = await DataStore.query(Products, Predicates.ALL, {
-        sort: (s) => s.flavor(SortDirection.ASCENDING),
-      });
+      const itemData = (await DataStore.query(Products)).sort((a, b) => a.Flavor.Name.localeCompare(b.Flavor.Name) );
       setItems(itemData);
     }
     const subscription = DataStore.observe(Products).subscribe(() =>
@@ -28,8 +27,8 @@ export default function Home() {
   const list = items.map((item) => {
     return (
       item.quantity > 0 && (
-        <ListGroup.Item key={item.flavor}>
-          <Item list flavor={item.flavor} quantity={item.quantity}></Item>
+        <ListGroup.Item key={item.id}>
+          <Item list flavor={item.Flavor.Name} quantity={item.quantity}></Item>
         </ListGroup.Item>
       )
     );
@@ -51,6 +50,7 @@ export default function Home() {
                 size="lg"
                 href="https://api.whatsapp.com/send?phone=525554058740&text=Hola!%20Quiero%20paletas"
               >
+                <Image width={'20px'} fluid src="whatsapp.png" alt="Pide por whatsapp"></Image>
                 Pide tus paletas
               </Button>
             </div>

@@ -1,5 +1,64 @@
 export const schema = {
     "models": {
+        "Flavor": {
+            "name": "Flavor",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Name": {
+                    "name": "Name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Flavors",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Products": {
             "name": "Products",
             "fields": {
@@ -10,19 +69,25 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "flavor": {
-                    "name": "flavor",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "quantity": {
                     "name": "quantity",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": false,
                     "attributes": []
+                },
+                "Flavor": {
+                    "name": "Flavor",
+                    "isArray": false,
+                    "type": {
+                        "model": "Flavor"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "productsFlavorId"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -548,5 +613,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4c4c626be22e6f006b1bc7b793cfdbe5"
+    "version": "02e3b10d5574c33c0f9517bb507f6c48"
 };

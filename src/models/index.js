@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { Products, Kardex, Item, Order, SalesRecord, User } = initSchema(schema);
+const { Flavor, Products, Kardex, Item, Order, SalesRecord, User } = initSchema(schema);
 
 export {
+  Flavor,
   Products,
   Kardex,
   Item,

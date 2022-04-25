@@ -11,9 +11,7 @@ function Order() {
   useEffect(() => {
     fetchItems();
     async function fetchItems() {
-      const itemData = await DataStore.query(Products, Predicates.ALL, {
-        sort: (s) => s.flavor(SortDirection.ASCENDING),
-      });
+      const itemData = (await DataStore.query(Products)).sort((a, b) => a.Flavor.Name.localeCompare(b.Flavor.Name) );
       setItems(itemData);
     }
     const subscription = DataStore.observe(Products).subscribe(() =>
@@ -22,10 +20,11 @@ function Order() {
     return () => subscription.unsubscribe();
   }, [setItems]);
 
+  
   const list = items.map((item) => {
     return (
-      <ListGroup.Item key={item.flavor}>
-        <Item order value={item.quantity} flavor={item.flavor}></Item>
+      <ListGroup.Item key={item.Flavor.Name}>
+        <Item order value={item.quantity} flavor={item.Flavor.Name}></Item>
       </ListGroup.Item>
     );
   });

@@ -14,9 +14,7 @@ function Stock() {
   useEffect(() => {
     fetchItems();
     async function fetchItems() {
-      const itemData = await DataStore.query(Products, Predicates.ALL, {
-        sort: (s) => s.flavor(SortDirection.ASCENDING),
-      });
+      const itemData = (await DataStore.query(Products)).sort((a, b) => a.Flavor.Name.localeCompare(b.Flavor.Name) );
       setItems(itemData);
       let productTotal = 0;
       Object.keys(itemData).map((item, i) => {
@@ -32,8 +30,8 @@ function Stock() {
 
   const list = items.map((item) => {
     return (
-      <ListGroup.Item key={item.flavor}>
-        <Item stock value={item.quantity} flavor={item.flavor}></Item>
+      <ListGroup.Item key={item.Flavor.Name}>
+        <Item stock value={item.quantity} flavor={item.Flavor.Name}></Item>
       </ListGroup.Item>
     );
   });

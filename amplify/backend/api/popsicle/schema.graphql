@@ -1,7 +1,12 @@
+type Flavor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Name: String
+}
+
 type Products @model @auth(rules: [{allow: public}]) {
   id: ID!
-  flavor: String
   quantity: Int
+  Flavor: Flavor @connection
 }
 
 type Kardex @model @auth(rules: [{allow: public}]) {
