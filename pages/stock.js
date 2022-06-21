@@ -1,11 +1,11 @@
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { DataStore } from "aws-amplify";
+import { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
-import Layout from "../components/Layout";
 import Item from "../components/Item";
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import { DataStore, Predicates, SortDirection } from "aws-amplify";
-import { useState, useEffect } from "react";
-import { Products } from "../src/models";
+import Layout from "../components/Layout";
+import { ListProducts } from "../src/models";
 import styles from "../styles/Home.module.css";
 
 function Stock() {
@@ -14,7 +14,9 @@ function Stock() {
   useEffect(() => {
     fetchItems();
     async function fetchItems() {
-      const itemData = (await DataStore.query(Products)).sort((a, b) => a.Flavor.Name.localeCompare(b.Flavor.Name) );
+      const itemData = (await DataStore.query(ListProducts)).sort((a, b) =>
+        a.Flavor.Name.localeCompare(b.Flavor.Name)
+      );
       setItems(itemData);
       let productTotal = 0;
       Object.keys(itemData).map((item, i) => {
@@ -22,11 +24,11 @@ function Stock() {
       });
       setTotal(productTotal);
     }
-    const subscription = DataStore.observe(Products).subscribe(() =>
+    const subscription = DataStore.observe(ListProducts).subscribe(() =>
       fetchItems()
     );
     return () => subscription.unsubscribe();
-  }, [setItems, total]);
+  }, []);
 
   const list = items.map((item) => {
     return (
@@ -39,7 +41,7 @@ function Stock() {
     <Layout>
       <h1>
         Inventario{" "}
-        <Badge pill bg="secondary" className={styles.badge} >
+        <Badge pill bg="secondary" className={styles.badge}>
           {total}
         </Badge>
       </h1>

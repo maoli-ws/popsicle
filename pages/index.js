@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { DataStore, Predicates, SortDirection } from "aws-amplify";
+import { DataStore } from "aws-amplify";
+import { useEffect, useState } from "react";
 import { Button, ListGroup } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
+import { GoogleAd } from "../components/GoogleAd";
 import Item from "../components/Item";
 import Layout from "../components/Layout";
+import { ListProducts } from "../src/models";
 import styles from "../styles/Home.module.css";
-import { Products } from "../src/models";
-import { GoogleAd } from "../components/GoogleAd";
-import Image from 'react-bootstrap/Image'
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -15,10 +15,12 @@ export default function Home() {
   useEffect(() => {
     fetchItems();
     async function fetchItems() {
-      const itemData = (await DataStore.query(Products)).sort((a, b) => a.Flavor.Name.localeCompare(b.Flavor.Name) );
+      const itemData = (await DataStore.query(ListProducts)).sort((a, b) =>
+        a.Flavor.Name.localeCompare(b.Flavor.Name)
+      );
       setItems(itemData);
     }
-    const subscription = DataStore.observe(Products).subscribe(() =>
+    const subscription = DataStore.observe(ListProducts).subscribe(() =>
       fetchItems()
     );
     return () => subscription.unsubscribe();
@@ -50,7 +52,12 @@ export default function Home() {
                 size="lg"
                 href="https://api.whatsapp.com/send?phone=525554058740&text=Hola!%20Quiero%20paletas"
               >
-                <Image width={'20px'} fluid src="whatsapp.png" alt="Pide por whatsapp"></Image>
+                <Image
+                  width={"20px"}
+                  fluid
+                  src="whatsapp.png"
+                  alt="Pide por whatsapp"
+                ></Image>
                 Pide tus paletas
               </Button>
             </div>

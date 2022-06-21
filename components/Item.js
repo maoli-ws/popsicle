@@ -1,17 +1,17 @@
-import { InputGroup, Button, FormControl } from "react-bootstrap";
 import { DataStore } from "aws-amplify";
-import { Products } from "../src/models";
+import { Button, FormControl, InputGroup } from "react-bootstrap";
+import { ListProducts } from "../src/models";
 
 export default function Item(props) {
-  console.log("🚀 ~ file: Item.js ~ line 6 ~ Item ~ props", props)
   async function saveSale() {
     const newQuantity = document.getElementById(
       `newQuantity-${props.flavor}`
     ).value;
-    const original = (await DataStore.query(Products)).filter(p => p.Flavor.Name === props.flavor);
-    
+    const original = (await DataStore.query(ListProducts)).filter(
+      (p) => p.Flavor.Name === props.flavor
+    );
     await DataStore.save(
-      Products.copyOf(original[0], (updated) => {
+      ListProducts.copyOf(original[0], (updated) => {
         updated.quantity = original[0].quantity - newQuantity;
       })
     );
@@ -20,9 +20,12 @@ export default function Item(props) {
     const newQuantity = document.getElementById(
       `newQuantity-${props.flavor}`
     ).value;
-    const original = (await DataStore.query(Products)).filter(p => p.Flavor.Name === props.flavor);
+    const original = (await DataStore.query(ListProducts)).filter(
+      (p) => p.Flavor.Name === props.flavor
+    );
+    // const products = original.filter(p => p.Flavor.Name === props.flavor);
     await DataStore.save(
-      Products.copyOf(original[0], (updated) => {
+      ListProducts.copyOf(original[0], (updated) => {
         updated.quantity = +original[0].quantity + +newQuantity;
       })
     );
@@ -33,14 +36,16 @@ export default function Item(props) {
       <InputGroup className="mb-3">
         <InputGroup.Text className="mb-6">{props.flavor}</InputGroup.Text>
         <InputGroup.Text className="mb-6">{props.quantity}</InputGroup.Text>
-        {!props.list && <FormControl
-          aria-label="Example text with button addon"
-          aria-describedby="basic-addon1"
-          value={props.value}
-          readOnly={true}
-        />}
+        {!props.list && (
+          <FormControl
+            aria-label="Example text with button addon"
+            aria-describedby="basic-addon1"
+            value={props.value}
+            readOnly={true}
+          />
+        )}
       </InputGroup>
-      {(!props.stock && !props.list) && (
+      {!props.stock && !props.list && (
         <InputGroup className="mb-3">
           <FormControl
             placeholder="Cantidad"
@@ -48,7 +53,7 @@ export default function Item(props) {
             aria-describedby="basic-addon2"
             id={`newQuantity-${props.flavor}`}
           />
-          {(props.order && props.value > 0) && (
+          {props.order && props.value > 0 && (
             <Button
               variant="outline-secondary"
               id={`button-sale-${props.flavor}`}
