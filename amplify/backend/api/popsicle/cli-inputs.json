@@ -18,6 +18,6 @@
       }
     },
     "apiName": "popsicle",
-    "gqlSchemaPath": "/tmp/amplify-86fabb9f-c8b8-402d-99dc-3315aded3192/amplify/backend/api/popsicle/schema.graphql"
+    "gqlSchemaPath": "/tmp/amplify-33778a4f-6326-4392-aa04-424341524f61/amplify/backend/api/popsicle/schema.graphql"
   }
 }
