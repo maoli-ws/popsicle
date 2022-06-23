@@ -50,7 +50,7 @@ export default function Home() {
               <Button
                 variant="success"
                 size="lg"
-                href="https://api.whatsapp.com/send?phone=525554058740&text=Hola!%20Quiero%20paletas"
+                href="https://api.whatsapp.com/send?phone=7774482486&text=¡Hola!%20Quiero%20pedir%20unas%20paletas%20🥵"
               >
                 <Image
                   width={"20px"}
