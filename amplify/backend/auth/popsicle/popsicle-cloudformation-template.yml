@@ -394,4 +394,4 @@ Outputs:
         - appSecret
     Condition: ShouldOutputAppClientSecrets
 Description: >-
-  {"createdOn":"Linux","createdBy":"AmplifyAdmin","createdWith":"7.6.22","stackType":"auth-Cognito","metadata":{}}
+  {"createdOn":"Linux","createdBy":"Amplify","createdWith":"7.6.22","stackType":"auth-Cognito","metadata":{}}

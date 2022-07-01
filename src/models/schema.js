@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Products": {
-            "name": "Products",
+        "ListProducts": {
+            "name": "ListProducts",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,17 +10,82 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "flavor": {
-                    "name": "flavor",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "quantity": {
                     "name": "quantity",
                     "isArray": false,
                     "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Flavor": {
+                    "name": "Flavor",
+                    "isArray": false,
+                    "type": {
+                        "model": "Flavor"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "listProductsFlavorId"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "ListProducts",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Flavor": {
+            "name": "Flavor",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Name": {
+                    "name": "Name",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -42,7 +107,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Products",
+            "pluralName": "Flavors",
             "attributes": [
                 {
                     "type": "model",
@@ -548,5 +613,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4c4c626be22e6f006b1bc7b793cfdbe5"
+    "version": "ca740ab14fdd4811f5bc59114419ec19"
 };
